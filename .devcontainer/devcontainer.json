@@ -1,0 +1,26 @@
+{
+  "name": "Portfolio Performance Audit",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    // Esto soluciona tu error de compilación instalando Java 21
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": "true",
+      "jdkDistro": "ms"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",      // Pack básico para navegar el código Java
+        "redhat.vscode-xml",             // Ayuda a leer los pom.xml
+        "snyk-security.snyk-vulnerability-scanner" // Escaneo de seguridad visual
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic"
+      }
+    }
+  },
+  // Este comando instala Trivy automáticamente cuando se crea el Codespace
+  "postCreateCommand": "curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin && echo 'Trivy instalado correctamente'"
+}
